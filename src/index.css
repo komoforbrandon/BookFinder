@@ -77,11 +77,11 @@ body {
     rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     --text: #9ca3af;
     --text-h: #f3f4f6;
-    --bg: #16171d;
+    --bg: #19191bdc;
     --border: #2e303a;
     --code-bg: #1f2028;
     --accent: #c084fc;
@@ -95,13 +95,13 @@ body {
   #social .button-icon {
     filter: invert(1) brightness(2);
   }
-}
+} */
 
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
-    --text: #6b6375;
+    --text: #3c3a3d;
     --text-h: #08060d;
-    --bg: #fff;
+    --bg: #fffdf1;
     --border: #e5e4e7;
     --code-bg: #f4f3ec;
     --accent: #aa3bff;
@@ -110,5 +110,8 @@ body {
     --social-bg: rgba(244, 243, 236, 0.5);
     --shadow:
       rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  }
+  #social .button-icon {
+    filter: invert(0) brightness(1);
   }
 }

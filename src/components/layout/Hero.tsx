@@ -1,0 +1,14 @@
+import SearchBar from "../common/SearchBar"
+
+export default function HeroSection() {
+    return (
+    <div className="max-w-4xl mx-auto flex flex-col justify-center text-center">
+       <p className="uppercase font-md text-amber-700">curating knowledge</p>
+       <div className="py-2 md:py-5">
+          <h2 className="text-3xl md:text-6xl font-bold">Find your next</h2>
+          <h2 className="font-semibold italic text-3xl md:text-6xl">literary journey.</h2>
+       </div>
+      <SearchBar />
+    </div>
+    )
+}
