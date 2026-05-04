@@ -1,6 +1,6 @@
 import SearchBar from "../common/SearchBar"
 
-export default function HeroSection() {
+export default function HeroSection({setSearch, search}: {setSearch: (query: string) => void, search: string}) {
     return (
     <div className="max-w-4xl mx-auto flex flex-col justify-center text-center">
        <p className="uppercase font-md text-amber-700">curating knowledge</p>
@@ -8,7 +8,7 @@ export default function HeroSection() {
           <h2 className="text-3xl md:text-6xl font-bold">Find your next</h2>
           <h2 className="font-semibold italic text-3xl md:text-6xl">literary journey.</h2>
        </div>
-      <SearchBar />
+      <SearchBar OnSearch={setSearch} initialValue={search} />
     </div>
     )
 }

@@ -7,7 +7,7 @@ export default function Footer() {
       </div>
       <div className="flex justify-center items-center gap-4 w-full">
        {footerprop.map((item, index) => (
-          <a href="#" key={index} className="text-sm text-gray-400 hover:text-gray-200">{item}</a>
+          <a href="#" key={index} className="text-sm text-gray-400 hover:text-gray-900">{item}</a>
        ))}
       </div>
       <div className="text-center text-gray-400 w-full md:text-right">

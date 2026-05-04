@@ -3,9 +3,13 @@ import AppRoutes from './routes/AppRoutes'
 import Navbar from './components/layout/Navbar'
 import './App.css'
 import Footer from './components/layout/Footer'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 function App() {
   return (
+    <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <div className="min-h-screen">
         <Navbar />
@@ -15,6 +19,7 @@ function App() {
         <Footer />
       </div>
     </BrowserRouter>
+    </QueryClientProvider>
   )
 }
 
