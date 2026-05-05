@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query"
 import { searchBooks } from "../services/api"
 import BookCard from "../components/common/BookCard"
 import type { BookProps } from "../types/type"
-import { SortDesc , ListFilter, ArrowLeft, ArrowRight, Book} from "lucide-react"
+import { SortDesc , ListFilter, ArrowLeft, ArrowRight} from "lucide-react"
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0)
