@@ -1,7 +1,15 @@
 const BaseUrl = 'https://openlibrary.org'
 
+export async function fetchRecentBooks() {
+   const response = await fetch(`${BaseUrl}/recentchanges.json?limit=15&sort=new`)
+   if (!response.ok) {
+      throw new Error('Failed to fetch recent books')
+   }
+   const data = await response.json()
+   return data
+}
 export async function searchBooks(query: string) {
-   const response = await fetch(`${BaseUrl}/search.json?q=${encodeURIComponent(query)}`)
+   const response = await fetch(`${BaseUrl}/search.json?q=${encodeURIComponent(query)}&limit=100&sort=new`)
    if (!response.ok) {
       throw new Error('Failed to fetch books')
    }

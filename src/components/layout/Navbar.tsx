@@ -30,7 +30,7 @@ export default function Navbar() {
             </div>
         </nav>
      {menuOpen && (
-                <div className="absolute bg-(--bg) right-0 flex-col space-y-2 p-2 w-full border border-amber-200/30 rounded-md mt-2 md:hidden sm:hidden">
+                <div className="fixed bg-transparen backdrop-blur-2xl top-14 right-0 flex-col space-y-2 p-2 w-full border border-amber-200/30 rounded-md mt-2 md:hidden sm:hidden">
                     {navLinks.map((link) => (
                         <Link 
                         key={link.name} 

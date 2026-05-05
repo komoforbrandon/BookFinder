@@ -3,10 +3,19 @@ export type SearchProp ={
   initialValue?: string;
 };
 
-export type BookDetails = {
+export type BookProps = {
+  author_key: string[];
+  author_name: string[];
+  cover_i: number;
+  edition_count: number;
+  first_publish_year: number;
   title: string;
-  authors: { name: string }[];
-  cover: string;
-  publish_date: string;
-  description: string;
+  olid?: string;
+  key?: string
+  cover_edition_key?: string
+  language?: string[]
 }
+
+// export type BookDetails = {
+
+// }
