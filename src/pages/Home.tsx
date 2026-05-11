@@ -1,4 +1,5 @@
 import HeroSection from "../components/layout/Hero"
+import Loader from "../components/common/Loader"
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { searchBooks } from "../services/api"
@@ -11,15 +12,16 @@ export default function Home() {
   const [page, setPage] = useState(0)
   const [searchQuery, setSearchQuery] = useState('')
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['searchBooks', searchQuery],
     queryFn: () => searchQuery ? searchBooks(searchQuery) : searchBooks('latest'),
     // enabled: !!searchQuery,
   })
 
-  console.log(data)
   const BookWithCover = data?.filter((book: BookProps) => book.cover_i)
   const groupeOf4 = BookWithCover?.slice(currentIndex, currentIndex + 5)
+
+  console.log('This is the groupe of 4 data', groupeOf4)
 
   const handleNextPage = () => {
     if (currentIndex + 5 < BookWithCover?.length) {
@@ -50,10 +52,11 @@ export default function Home() {
         </p>
       </div>
       </div>
+      {isLoading && <Loader />}
       {data && (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 py-8 md:gap-10 ]">
           {groupeOf4?.map((book: BookProps) => (
-            <BookCard {...book} key={book.author_key?.[0] ?? book.key}/>
+            <BookCard book={book} key={book.author_key?.[0] ?? book.key}/>
           ))}
         </div>
       ) }
