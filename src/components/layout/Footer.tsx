@@ -3,7 +3,7 @@ export default function Footer() {
   return (
     <footer className="w-full bg-black/5 py-4 px-3 space-y-3 flex flex-col justify-between items-center md:flex-row">
       <div className="text-center md:text-left w-full">
-        <p className="font-sans-serif text-md italic font-semibold">The Editorial Scholar</p>
+        <p className="font-serif text-lg italic font-semibold text-blue-950">The Editorial Scholar</p>
       </div>
       <div className="flex justify-center items-center gap-4 w-full">
        {footerprop.map((item, index) => (

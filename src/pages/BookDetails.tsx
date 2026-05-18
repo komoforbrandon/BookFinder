@@ -7,7 +7,6 @@ import { ArrowLeft, Bookmark, Share2, PanelRight} from "lucide-react"
 import { useFavorites } from "../hooks/useFavorites"
 import BookCard from "../components/common/BookCard"
 
-
 export default function BookDetails() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -35,10 +34,6 @@ export default function BookDetails() {
     queryFn: () => getEditionDetails(editionKey!),
     enabled: !!editionKey,
   })
-  
-  console.log("This is the edition data", editionData)
-
-  console.log("This is the author data", authorData)
 
   function getDescription() {
     if (data?.description) {
