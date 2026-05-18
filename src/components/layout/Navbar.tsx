@@ -11,11 +11,11 @@ export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
    return (
     <>
-        <nav className="sticky top-0 bg-transparent p-4 flex justify-between items-center border-b border-gray-400/30 shadow-sm backdrop-blur-2xl">
+        <nav className="sticky top-0 bg-transparent px-2 py-2 md:px-4  md:py-5 flex justify-between items-center border-b border-gray-400/30 shadow-sm backdrop-blur-2xl">
             <h2 className="text-black/80 text-2xl font-bold font-serif">The Editorial Scholar</h2>
             <div className="space-x-8 hidden md:flex sm:flex">
                 {navLinks.map((link) => (
-                    <Link key={link.name} to={link.path} className="text-gray-700 uppercase font-medium hover:text-gray-900 focus:underline focus:text-amber-700 focus:ring-gray-400 focus:underline-offset-7 focus:decoration-2 transition-colors duration-600">
+                    <Link key={link.name} to={link.path} className="text-gray-700 uppercase font-bold hover:text-gray-900 focus:underline focus:text-amber-700 focus:ring-gray-400 focus:underline-offset-7 focus:decoration-3 transition-colors duration-600">
                         {link.name}
                     </Link>
                 ))}

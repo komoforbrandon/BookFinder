@@ -9,7 +9,8 @@ export async function fetchRecentBooks() {
    return data
 }
 export async function searchBooks(query: string) {
-   const response = await fetch(`${BaseUrl}/search.json?q=${encodeURIComponent(query)}&limit=100&sort=new`)
+   const response = await fetch(`${BaseUrl}/search.json?q=${encodeURIComponent(query)}&limit=100&page=1`)
+   // https://openlibrary.org/search.json?q=bestseller&page=1&limit=10
    if (!response.ok) {
       throw new Error('Failed to fetch books')
    }
@@ -17,8 +18,8 @@ export async function searchBooks(query: string) {
    return data.docs
 }
 
-export async function getBookDetails(id: string) {
-   const response = await fetch(`${BaseUrl}/books/${id}.json`)
+export async function getBookDetails(olid: string) {
+   const response = await fetch(`${BaseUrl}/works/${olid}.json`)
    if (!response.ok) {
       throw new Error('Failed to fetch book details')
    }
@@ -31,10 +32,19 @@ export async function getBookDetails(id: string) {
    return data
 }
 
-export async function alternateBookDetails(title: string) {
-   const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(title)}`)
+export async function BookAuthorDetails(authorKey: string) {
+   const response = await fetch(`${BaseUrl}/authors/${authorKey}.json`)
    if (!response.ok) {
-      throw new Error('Failed to fetch book details')
+      throw new Error('Failed to fetch author details')
+   }
+   const data = await response.json()
+   return data
+}
+
+export async function getEditionDetails(editionKey: string) {
+   const response = await fetch(`${BaseUrl}/books/${editionKey}.json`)
+   if (!response.ok) {
+      throw new Error('Failed to fetch edition details')
    }
    const data = await response.json()
    return data

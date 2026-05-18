@@ -5,37 +5,40 @@ import { useQuery } from "@tanstack/react-query"
 import { searchBooks } from "../services/api"
 import BookCard from "../components/common/BookCard"
 import type { BookProps } from "../types/type"
+import { useFavorites } from "../hooks/useFavorites"
 import { SortDesc , ListFilter, ArrowLeft, ArrowRight} from "lucide-react"
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [page, setPage] = useState(0)
   const [searchQuery, setSearchQuery] = useState('')
+  const { isFavorite, toggleFavorite } = useFavorites()
 
   const { data, isLoading } = useQuery({
     queryKey: ['searchBooks', searchQuery],
-    queryFn: () => searchQuery ? searchBooks(searchQuery) : searchBooks('latest'),
+    queryFn: () => searchQuery ? searchBooks(searchQuery) : searchBooks('popular'),
     // enabled: !!searchQuery,
   })
 
-  const BookWithCover = data?.filter((book: BookProps) => book.cover_i)
-  const groupeOf4 = BookWithCover?.slice(currentIndex, currentIndex + 5)
-
-  console.log('This is the groupe of 4 data', groupeOf4)
-
   const handleNextPage = () => {
     if (currentIndex + 5 < BookWithCover?.length) {
-      setCurrentIndex(currentIndex + 4)
+      setCurrentIndex((prevIndex) => prevIndex + 5)
       setPage(page + 1)
     }
   }
 
   const handlePreviousPage = () => {
     if (currentIndex >= 5) {
-      setCurrentIndex(currentIndex - 5)
+      setCurrentIndex((prevIndex) => prevIndex - 5)
       setPage(page - 1)
     }
   }
+
+  const BookWithCover = data?.filter((book: BookProps) => book.cover_i || book.covers?.[0])
+  const groupOf5 = BookWithCover?.slice(currentIndex, currentIndex + 5)
+
+  console.log('This is the group of 5 data length', groupOf5?.length)
+
   return (
     <div className="container w-full">
       <HeroSection setSearch={setSearchQuery} search={searchQuery} />
@@ -54,9 +57,14 @@ export default function Home() {
       </div>
       {isLoading && <Loader />}
       {data && (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 py-8 md:gap-10 ]">
-          {groupeOf4?.map((book: BookProps) => (
-            <BookCard book={book} key={book.author_key?.[0] ?? book.key}/>
+        <div className="grid grid-cols-1 items-center md:grid-cols-3 lg:grid-cols-5 gap-4 py-8 md:gap-10 ]">
+          {groupOf5?.map((book: BookProps, index: number) => (
+            <BookCard 
+              book={book} 
+              key={book?.key ? `${book.key}-${index}` : `${book?.author_key?.[0] || 'fallback'}-${index}`}
+              isFavorite={isFavorite(book.key)}
+              onToggleFavorite={toggleFavorite}
+            />
           ))}
         </div>
       ) }
@@ -72,11 +80,11 @@ export default function Home() {
           <button 
           className="flex gap-2 items-center p-2 uppercase text-amber-600 underline text-sm md:text-md cursor-pointer active:text-gray-800"
           onClick={()=>{}}
-          > 0{page}</button>
+          > {page>9?`${page}`:`0${page}`}</button>
           <button 
           className="flex gap-2 items-center p-2 uppercase text-gray-400 text-sm md:text-md cursor-pointer active:text-gray-800"
           onClick={()=>{}}
-          > 0{page + 1}</button>
+          > {page>8?`${page+1}`:`0${page+1}`}</button>
            <button 
           className="flex gap-2 items-center p-2 uppercase text-gray-400 text-sm md:text-md cursor-pointer active:text-gray-800"
           onClick={()=>{}}
@@ -84,7 +92,7 @@ export default function Home() {
            <button 
           className="flex gap-2 items-center p-2 uppercase text-gray-400 text-sm md:text-md cursor-pointer active:text-gray-800"
           onClick={()=>{}}
-          >{Math.floor((BookWithCover?.length ?? 0)/4)}</button>
+          >{Math.floor((BookWithCover?.length ?? 0)/5)>10?`${Math.floor((BookWithCover?.length ?? 0)/5)}`:`0${Math.floor((BookWithCover?.length ?? 0)/5)}`}</button>
         </div>
 
         <button 
