@@ -10,7 +10,6 @@ export async function fetchRecentBooks() {
 }
 export async function searchBooks(query: string) {
    const response = await fetch(`${BaseUrl}/search.json?q=${encodeURIComponent(query)}&limit=100&page=1`)
-   // https://openlibrary.org/search.json?q=bestseller&page=1&limit=10
    if (!response.ok) {
       throw new Error('Failed to fetch books')
    }
@@ -24,11 +23,6 @@ export async function getBookDetails(olid: string) {
       throw new Error('Failed to fetch book details')
    }
    const data = await response.json()
-   // if(data?.created.type === "/type/redirect") {
-   //    const response2 = await fetch(`${BaseUrl}${data?.location}.json`)
-   //    data = await response2.json()
-   // }
-
    return data
 }
 

@@ -11,14 +11,12 @@ export default function BookCard({
     ? `https://covers.openlibrary.org/b/id/${book?.cover_i}-L.jpg`
     : FailImg;
 
-  console.log("This is the book", book);
-
   const id = book.key?.split("/").pop();
 
   return (
     <Link
       to={`/book/${id}`}
-      className="flex flex-col mx-auto bg-gray-200/60 max-w-xs rounded overflow-hidden shadow-lg"
+      className="flex flex-col mx-auto bg-gray-200/60 w-full h-full rounded overflow-hidden shadow-lg"
     >
       <div className="relative">
         <button

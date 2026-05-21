@@ -39,7 +39,7 @@ export default function ReadingListLoader() {
                 </div>
             </div>
             <div className="flex gap-2 items-center my-5">
-                <hr className="w-15 md:w-35 border-2 text-amber-800" />
+                {/* <hr className="w-15 md:w-35 border-2 text-amber-800" /> */}
                 <div className="animate-pulse h-6 bg-gray-300 rounded w-48"></div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">

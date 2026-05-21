@@ -18,7 +18,6 @@ export default function BookDetails() {
   })
 
   const authorKey = data?.authors?.[0]?.author?.key.split("/").pop()
-  console.log("This is the author key", authorKey)
 
   const { data: authorData } = useQuery<AuthorDetails>({
     queryKey: ['author', authorKey],
@@ -27,7 +26,6 @@ export default function BookDetails() {
   })
 
   const editionKey = data?.covers?.[0] ? `OL${data.covers[0]}M` : null
-  console.log("This is the edition key", editionKey)
 
   const { data: editionData } = useQuery<EditionDetails>({  
     queryKey: ['edition', editionKey],
@@ -55,8 +53,6 @@ export default function BookDetails() {
   if (isError) {
     return <div className="text-center text-red-500">Error</div>
   }
-
-  console.log("This is the data from the book", data);
 
   const ImageUrl = `https://covers.openlibrary.org/b/id/${data?.covers?.[0] ?? data?.cover_i}-L.jpg`
 

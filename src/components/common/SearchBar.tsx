@@ -7,9 +7,6 @@ import type { SearchProp } from "../../types/type";
 export default function SearchBar({ OnSearch, initialValue="" }: SearchProp) {
     const [term, setTerm] = useState(initialValue)
     const navigate = useNavigate()
-    // useEffect(() => {
-    //     setTerm(initialValue)
-    // }, [initialValue])
 
     const handleSearch = () => {
         const q = term.trim()

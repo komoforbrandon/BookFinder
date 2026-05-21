@@ -14,7 +14,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState('')
   const { isFavorite, toggleFavorite } = useFavorites()
 
-  const { data, isLoading } = useQuery({
+  const { data, isError, error, isLoading } = useQuery({
     queryKey: ['searchBooks', searchQuery],
     queryFn: () => searchQuery ? searchBooks(searchQuery) : searchBooks('popular'),
     // enabled: !!searchQuery,
@@ -37,13 +37,11 @@ export default function Home() {
   const BookWithCover = data?.filter((book: BookProps) => book.cover_i || book.covers?.[0])
   const groupOf5 = BookWithCover?.slice(currentIndex, currentIndex + 5)
 
-  console.log('This is the group of 5 data length', groupOf5?.length)
-
   return (
     <div className="container w-full">
       <HeroSection setSearch={setSearchQuery} search={searchQuery} />
       <div className="flex justify-between items-center">
-      <h1 className="text-xl font-bold mb-4 text-shadow-blue-950 md:text-3xl">Latest Acquisitions</h1>
+      <h1 className="text-xl font-semibold md:font-bold my-3 text-shadow-blue-950 md:text-3xl">{searchQuery ? `Search Results for "${searchQuery}"` : "Latest Acquisitions"}</h1>
       <div className="flex gap-3 text-sm">
         <p className="flex items-center gap-1 font-bold cursor-pointer">
         <ListFilter size={18} className="text-gray-600" />
@@ -56,6 +54,13 @@ export default function Home() {
       </div>
       </div>
       {isLoading && <Loader />}
+
+    {isError && ( 
+      <div className="p-4 text-red-400 border border-red-200  fond-medium text-lg m-2 w-full rounded-lg text-center">
+      An Error occurred: {error.message}
+    </div>
+    )}
+
       {data && (
         <div className="grid grid-cols-1 items-center md:grid-cols-3 lg:grid-cols-5 gap-4 py-8 md:gap-10 ]">
           {groupOf5?.map((book: BookProps, index: number) => (
@@ -70,7 +75,7 @@ export default function Home() {
       ) }
      
      <div className="flex justify-between items-center flex-col md:flex-row">
-      <p className="italic text-gray-400 ">Showing 1-12 of 284 curations</p>
+      <p className="italic text-gray-400 ">Showing 1-{BookWithCover?.length} of {data?.length} curations</p>
       <div className="flex gap-5">
         <button 
         className="flex gap-2 items-center p-2g uppercase text-gray-400 text-sm md:text-md cursor-pointer active:text-gray-800"
