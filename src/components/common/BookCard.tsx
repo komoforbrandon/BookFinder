@@ -16,13 +16,13 @@ export default function BookCard({
   return (
     <Link
       to={`/book/${id}`}
-      className="flex flex-col mx-auto bg-gray-200/60 w-full h-full rounded overflow-hidden shadow-lg"
+      className="group flex flex-col mx-auto bg-gray-200/60 w-full h-full rounded overflow-hidden shadow-lg"
     >
       <div className="relative z-0">
         <button
           type="button"
           aria-label={isFavorite ? "Remove from ReadList" : "Add to ReadList"}
-          className="absolute top-2 right-2 z-20 rounded-lg bg-white/90 p-2 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+          className="hidden group-hover:block absolute top-2 right-2 z-10 rounded-lg bg-white/95 p-2 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation(); // Prevent the click from bubbling up to the Link

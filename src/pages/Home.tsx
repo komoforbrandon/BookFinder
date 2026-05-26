@@ -62,7 +62,7 @@ export default function Home() {
     )}
 
       {data && (
-        <div className="grid grid-cols-1 items-center md:grid-cols-3 lg:grid-cols-5 gap-4 py-8 md:gap-10 ]">
+        <div className="grid grid-cols-1 items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 py-8 md:gap-10 ]">
           {groupOf5?.map((book: BookProps, index: number) => (
             <BookCard 
               book={book} 
