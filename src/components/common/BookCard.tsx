@@ -18,7 +18,7 @@ export default function BookCard({
       to={`/book/${id}`}
       className="flex flex-col mx-auto bg-gray-200/60 w-full h-full rounded overflow-hidden shadow-lg"
     >
-      <div className="relative">
+      <div className="relative z-0">
         <button
           type="button"
           aria-label={isFavorite ? "Remove from ReadList" : "Add to ReadList"}
@@ -36,10 +36,10 @@ export default function BookCard({
             strokeWidth={2}
           />
         </button>
-        <img className="w-full aspect-3/3 object-cover object-center transition-transform duration-200 hover:scale-105" src={ImageUrl} alt={book.title} />
+        <img className="w-full aspect-3/3  object-cover object-center transition-transform duration-200 hover:scale-105" src={ImageUrl} alt={book.title} />
       </div>
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2 text-left text-blue-950">
+      <div className="px-4 py-3 lg:px-6 lg:py-4">
+        <div className="font-bold text-lg lg:text-[19px] mb-2 text-left text-blue-950">
           {book?.title.length > 30
             ? book.title.slice(0, 30) + "..."
             : book?.title}

@@ -11,7 +11,7 @@ export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
    return (
     <>
-        <nav className="sticky top-0 bg-transparent px-2 py-2 md:px-4  md:py-5 flex justify-between items-center border-b border-gray-400/30 shadow-sm backdrop-blur-2xl">
+        <nav className="sticky z-5 top-0 bg-transparent px-2 py-2 md:px-4  md:py-5 flex justify-between items-center border-b border-gray-400/30 shadow-sm backdrop-blur-2xl">
             <h2 className="text-black/80 text-2xl font-bold font-serif">The Editorial Scholar</h2>
             <div className="space-x-8 hidden md:flex sm:flex">
                 {navLinks.map((link) => (

@@ -29,8 +29,8 @@ export default function RemainingCard({
         src={ImageUrl}
         alt={book.title}
       />
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl md:text-2xl font-serif mb-2 text-left text-blue-950">
+      <div className="px-4 py-2">
+        <div className="font-bold text-lg md:text-xl font-serif mb-1 text-left text-blue-950">
           {book?.title.length > 30
             ? book.title.slice(0, 30) + "..."
             : book?.title}
@@ -42,7 +42,7 @@ export default function RemainingCard({
               : bookDetails.description.value.slice(0, 50)
             : "No description available."}
         </p>
-        <div className="my-2">
+        <div className="my-1">
           <button
             type="button"
             aria-label={isFavorite ? "Remove from ReadList" : "Add to ReadList"}

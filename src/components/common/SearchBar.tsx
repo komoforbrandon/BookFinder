@@ -28,7 +28,7 @@ export default function SearchBar({ OnSearch, initialValue="" }: SearchProp) {
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         />
         <button
-         className="uppercase px-4 py-1 bg-gray-800/80 rounded-lg text-white/70 text-sm md:text-md cursor-pointer active:bg-gray-800"
+         className="uppercase px-4 py-1 bg-blue-950 rounded-lg text-white text-sm md:text-md cursor-pointer active:bg-blue-800"
          onClick={handleSearch}
         >Explore</button>
     </div>

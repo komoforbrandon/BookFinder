@@ -41,7 +41,7 @@ export default function Home() {
     <div className="container w-full">
       <HeroSection setSearch={setSearchQuery} search={searchQuery} />
       <div className="flex justify-between items-center">
-      <h1 className="text-xl font-semibold md:font-bold my-3 text-shadow-blue-950 md:text-3xl">{searchQuery ? `Search Results for "${searchQuery}"` : "Latest Acquisitions"}</h1>
+      <h1 className="text-xl font-semibold md:font-bold my-3 text-shadow-blue-950 md:text-3xl">{searchQuery ? (`${BookWithCover?.length === 0 ? "No Results" : `(${BookWithCover?.length}) Search Results for "${searchQuery}"`}`) : "Latest Acquisitions"}</h1>
       <div className="flex gap-3 text-sm">
         <p className="flex items-center gap-1 font-bold cursor-pointer">
         <ListFilter size={18} className="text-gray-600" />

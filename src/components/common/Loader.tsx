@@ -9,8 +9,6 @@ export default function Loader() {
           <div className="w-full h-58 bg-gray-300 rounded-lg"></div>
           <div className="w-1/2 h-3 bg-gray-400 rounded-lg mt-2"></div>
           <div className="w-3/4 h-3 bg-gray-400 rounded-lg mt-2"></div>
-          <div className="w-2/3 h-3 bg-gray-400 rounded-lg mt-2 left-1"></div>
-
         </div>
       ))}
     </div>
