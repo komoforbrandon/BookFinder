@@ -112,7 +112,7 @@ export default function Home() {
 
     {isError && ( 
       <div className="p-4 text-red-400 border border-red-200  fond-medium text-lg m-2 w-full rounded-lg text-center">
-      An Error occurred: {error.message}
+      An Error occurred:{error.message}
     </div>
     )}
 

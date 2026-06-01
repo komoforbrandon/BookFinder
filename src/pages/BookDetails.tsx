@@ -51,7 +51,7 @@ export default function BookDetails() {
   }
 
   if (isError) {
-    return <div className="text-center text-red-500">An Error Occured: {error.message}</div>
+    return <div className="p-4 text-red-400 border border-red-200  fond-medium text-lg m-2 w-full rounded-lg text-center">An Error Occured: {error.message}</div>
   }
 
   const ImageUrl = `https://covers.openlibrary.org/b/id/${data?.covers?.[0] ?? data?.cover_i}-L.jpg`
