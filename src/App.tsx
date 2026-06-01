@@ -1,11 +1,28 @@
+import { BrowserRouter } from 'react-router-dom'
+import AppRoutes from './routes/AppRoutes'
+import Navbar from './components/layout/Navbar'
 import './App.css'
+import Footer from './components/layout/Footer'
+import { FavoritesProvider } from './hooks/saveBook'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 function App() {
   return (
-    <>
-      <h1>Welcome to React with TypeScript!</h1>
-      <p>This is a simple React application using TypeScript.</p>
-    </>
+    <QueryClientProvider client={queryClient}>
+    <FavoritesProvider>
+    <BrowserRouter>
+      <div className="min-h-screen">
+        <Navbar />
+        <main className="container mx-auto p-4">
+          <AppRoutes />
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
+    </FavoritesProvider>
+    </QueryClientProvider>
   )
 }
 
