@@ -12,7 +12,7 @@ export default function BookDetails() {
   const navigate = useNavigate()
   const {favorites, isFavorite, toggleFavorite } = useFavorites()
 
-  const { data, isLoading, isError } = useQuery<BookDetails>({
+  const { data, isLoading, isError, error } = useQuery<BookDetails>({
     queryKey: ['book', id],
     queryFn: () => getBookDetails(id!),
   })
@@ -51,7 +51,7 @@ export default function BookDetails() {
   }
 
   if (isError) {
-    return <div className="text-center text-red-500">Error</div>
+    return <div className="text-center text-red-500">An Error Occured: {error.message}</div>
   }
 
   const ImageUrl = `https://covers.openlibrary.org/b/id/${data?.covers?.[0] ?? data?.cover_i}-L.jpg`

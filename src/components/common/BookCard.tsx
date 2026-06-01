@@ -16,7 +16,7 @@ export default function BookCard({
   return (
     <Link
       to={`/book/${id}`}
-      className="group flex flex-col mx-auto bg-gray-200/60 w-full h-full rounded overflow-hidden shadow-lg"
+      className="group flex flex-col mx-auto bg-gray-100/50 w-full h-full rounded overflow-hidden shadow-lg"
     >
       <div className="relative z-0">
         <button

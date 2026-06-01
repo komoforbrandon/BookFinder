@@ -25,7 +25,7 @@ export default function FirstCard({
   return (
     <Link
       to={`/book/${id}`}
-      className="flex flex-col md:flex-row h-full bg-gray-200/65 max-w-full rounded-lg shadow-lg p-3 cursor-default"
+      className="flex flex-col md:flex-row h-full bg-gray-100/40 max-w-full rounded-lg shadow-lg p-3 cursor-default"
     >
       <img
         className="w-full aspect-3/4 rounded-2xl object-cover object-center transition-transform duration-200 hover:scale-105"

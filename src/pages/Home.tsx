@@ -1,16 +1,16 @@
 import HeroSection from "../components/layout/Hero"
 import Loader from "../components/common/Loader"
+import Pagination from "../components/common/Pagination"
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { searchBooks } from "../services/api"
 import BookCard from "../components/common/BookCard"
 import type { BookProps } from "../types/type"
 import { useFavorites } from "../hooks/useFavorites"
-import { SortDesc , ListFilter, ArrowLeft, ArrowRight} from "lucide-react"
+import { SortDesc , ListFilter } from "lucide-react"
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [page, setPage] = useState(0)
   const [searchQuery, setSearchQuery] = useState('')
   const { isFavorite, toggleFavorite } = useFavorites()
 
@@ -20,20 +20,11 @@ export default function Home() {
     // enabled: !!searchQuery,
   })
 
-  const handleNextPage = () => {
-    if (currentIndex + 5 < BookWithCover?.length) {
-      setCurrentIndex((prevIndex) => prevIndex + 5)
-      setPage(page + 1)
-    }
+  const handleIndexChange = (newIndex: number) => {
+    setCurrentIndex(newIndex)
   }
 
-  const handlePreviousPage = () => {
-    if (currentIndex >= 5) {
-      setCurrentIndex((prevIndex) => prevIndex - 5)
-      setPage(page - 1)
-    }
-  }
-
+  console.log(data)
   const BookWithCover = data?.filter((book: BookProps) => book.cover_i || book.covers?.[0])
   const groupOf5 = BookWithCover?.slice(currentIndex, currentIndex + 5)
 
@@ -73,40 +64,13 @@ export default function Home() {
           ))}
         </div>
       ) }
-     
-     <div className="flex justify-between items-center flex-col md:flex-row">
-      <p className="italic text-gray-400 ">Showing 1-{BookWithCover?.length} of {data?.length} curations</p>
-      <div className="flex gap-5">
-        <button 
-        className="flex gap-2 items-center p-2g uppercase text-gray-400 text-sm md:text-md cursor-pointer active:text-gray-800"
-        onClick={handlePreviousPage}
-        ><ArrowLeft size={18} />  Previous</button>
-        <div className="flex items-center gap-2 font-bold">
-          <button 
-          className="flex gap-2 items-center p-2 uppercase text-amber-600 underline text-sm md:text-md cursor-pointer active:text-gray-800"
-          onClick={()=>{}}
-          > {page>9?`${page}`:`0${page}`}</button>
-          <button 
-          className="flex gap-2 items-center p-2 uppercase text-gray-400 text-sm md:text-md cursor-pointer active:text-gray-800"
-          onClick={()=>{}}
-          > {page>8?`${page+1}`:`0${page+1}`}</button>
-           <button 
-          className="flex gap-2 items-center p-2 uppercase text-gray-400 text-sm md:text-md cursor-pointer active:text-gray-800"
-          onClick={()=>{}}
-          > ...</button>
-           <button 
-          className="flex gap-2 items-center p-2 uppercase text-gray-400 text-sm md:text-md cursor-pointer active:text-gray-800"
-          onClick={()=>{}}
-          >{Math.floor((BookWithCover?.length ?? 0)/5)>10?`${Math.floor((BookWithCover?.length ?? 0)/5)}`:`0${Math.floor((BookWithCover?.length ?? 0)/5)}`}</button>
-        </div>
 
-        <button 
-        className="flex gap-2 items-center p-2 uppercase text-gray-400 text-sm md:text-md cursor-pointer active:text-gray-800"
-        onClick={handleNextPage}
-        > Next  <ArrowRight size={18} /></button>
-      </div>
-     </div>
-
+      <Pagination
+        totalbooks={data?.length || 0}
+        currentIndex={currentIndex}
+        onPageChange={handleIndexChange}
+        bookLength={BookWithCover?.length || 0}
+      /> 
     </div>
   )
 }

@@ -60,3 +60,10 @@ export type EditionDetails = {
   isbn_10?: string[];
   isbn_13?: string[];
 }
+
+export type PaginationProp = {
+  totalbooks: number;
+  currentIndex: number;
+  bookLength?: number;
+  onPageChange: (newIndex: number) => void;
+}

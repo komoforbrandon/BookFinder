@@ -25,7 +25,7 @@ export default function NextTwoCard({
   return (
     <Link
       to={`/book/${id}`}
-      className="grid grid-cols-[35%_65%] mx-auto bg-gray-200/65 max-w-full rounded-lg overflow-hidden shadow-lg p-3 cursor-default h-fit"
+      className="grid grid-cols-[35%_65%] mx-auto bg-gray-100/40 max-w-full rounded-lg overflow-hidden shadow-lg p-3 cursor-default h-fit"
     >
       <img
         className="w-full aspect-26/27 rounded-2xl object-cover object-center transition-transform duration-200 hover:scale-105"
@@ -44,7 +44,7 @@ export default function NextTwoCard({
             >
               <X
                 size={20}
-                stroke={isFavorite ? "red" : "#9CA3AF"}
+                stroke={isFavorite ? "black" : "#9CA3AF"}
                 strokeWidth={2}
               />
             </button>
