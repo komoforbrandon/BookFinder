@@ -15,6 +15,7 @@ export type BookProps = {
   cover_edition_key?: string
   language?: string[]
   covers?: string[];
+  ebook_access?: string;
 }
 
 export type BookCardProps = {
